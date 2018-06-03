@@ -42,6 +42,11 @@ public class BoardDaoImpl implements BoardDao {
 	public List<Map> boardList(Search search) throws Exception {
 		return sqlSession.selectList(NAME_SPACE + "boardList",search);
 	}
+	
+	@Override
+	public List<Map> boardList2(BoardVO vo) throws Exception {
+		return sqlSession.selectList(NAME_SPACE + "boardList",vo);
+	}
 
 	@Override
 	public void boardRegist(BoardVO vo) throws Exception {

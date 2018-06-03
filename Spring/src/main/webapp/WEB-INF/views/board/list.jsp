@@ -7,7 +7,7 @@
 $(document).ready(function() {
 	// 체크 되어 있는 값 추출
 
-	$("#bno").click(function() {
+/* 	$("#bno").click(function() {
 
 		var chked_val = "";
 		  $(":checkbox[name='nn']:checked").each(function(pi,po){
@@ -19,10 +19,16 @@ $(document).ready(function() {
 		  
 		   $('.chnno').val(chked_val);
 		   
-		   $('#listFrm').attr('action','/board/delete').submit();
+		   $('#delFrm').attr('action','/board/delete').submit();
 			return true;
 	});
+	 */
 	
+	$("#search").click(function() {
+		   
+		   $('#listFrm').attr('action','/board/list').submit();
+			return true;
+	});
 	
 	
 });
@@ -37,13 +43,12 @@ $(document).ready(function() {
 	<!--content -->
 	<div id="content">
 	<form id='listFrm'>
-	<%-- <select name="search_option">
-			<option value="title" <c:out value="${map.cri.search_option == 'title'?'selected':''}"/>>제목</option>
-			<option value="userid" <c:out value="${map.cri.search_option == 'writer'?'selected':''}"/> >작성자</option>
+	 <select name="searchCondition" style="height:30px">
+			<option value="t" <c:out value="${searchCondition == 't'?'selected':''}"/>>제목</option>
+			<option value="u" <c:out value="${searchCondition == 'u'?'selected':''}"/>>작성자</option>
 		</select> 
-		<input type="text" name="search_txt" value="${map.cri.search_txt}"> 
-		<button class="middle color blue button">검색</button> --%>
-		<input type="hidden" class="chnno"  name="bno" > 
+		<input type="text" name="searchText" value=""> 
+		<button class="middle color blue button" id="search">검색</button> 
 			
 		<table class="type03">
 			<caption>* 리스트 게시판</caption>
@@ -55,10 +60,11 @@ $(document).ready(function() {
 				<col width="200px">
 			</colgroup>
 			<tr>
-				<th class='TableCenter'><button>
-			<div id="bno">삭제</div>
-		</button>
- 			 </th>
+				<th class='TableCenter'>
+				<!-- <form id='delFrm'>
+					<input type="text" name="bno" >
+					<div id="bno">삭제</div>
+				</form> --></th>
 				<th class='TableCenter'>번호</th>
 				<th class='TableCenter'>제목</th>
 				<th class='TableCenter'>작성자</th>

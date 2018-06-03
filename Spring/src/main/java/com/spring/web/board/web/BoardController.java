@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.web.board.serivce.BoardService;
 import com.spring.web.domain.BoardVO;
 import com.spring.web.domain.Search;
-import com.spring.web.domain.search;
 import com.spring.web.factory.ContextFactory;
 
 @Controller
@@ -37,11 +37,12 @@ public class BoardController {
 	private BoardService service;
 
 	@RequestMapping(value = "/list")
-	public ModelAndView boardList(Search search) throws Exception {
+	public ModelAndView boardList(@ModelAttribute("search") Search search) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
+		
+		System.out.println("search" + search);
 
-		System.out.print("데이터 있나" + service.boardList(search));
 		service.boardList(search);
 		mv.addObject("list", service.boardList(search));
 		mv.setViewName("/board/list");// 타일즈 view => 일반 view
@@ -69,7 +70,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete( HttpServletRequest request) {
+	public String delete( HttpServletRequest request) throws Exception {
 		
 		String[] bno = request.getParameter("bno").toString().split(",");
 		
@@ -101,7 +102,7 @@ public class BoardController {
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 
 		jsonObject = new HashMap<String, Object>();
-		jsonObject.put("list", service.boardList(vo));
+		jsonObject.put("list", service.boardList2(vo));
 
 		return jsonObject;
 
@@ -112,7 +113,7 @@ public class BoardController {
 
 		ModelAndView mv = new ModelAndView();
 
-		System.out.print("데이터 있나" + service.boardList(vo));
+		System.out.print("데이터 있나" + service.boardList2(vo));
 		mv.setViewName("/board/listAjax");// 타일즈 view => 일반 view
 		return mv;
 	}

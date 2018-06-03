@@ -26,10 +26,8 @@ import org.springframework.util.StringUtils;
 
 import com.spring.web.board.dao.BoardDao;
 import com.spring.web.board.serivce.BoardService;
-import com.spring.web.board.serivce.serch;
 import com.spring.web.domain.BoardVO;
 import com.spring.web.domain.Search;
-import com.spring.web.domain.search;
 
 
 @Service("boardService")
@@ -43,6 +41,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<Map> boardList(Search search) throws Exception {
 		
 		return boardDao.boardList(search);
+	}
+	
+	@Override
+	public List<Map> boardList2(BoardVO vo) throws Exception {
+		
+		return boardDao.boardList2(vo);
 	}
 
 

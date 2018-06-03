@@ -6,9 +6,8 @@
 
 	<select id="boardList" resultType="com.spring.web.domain.BoardVO">
 		select * from board order by bno desc limit 0,10
-		where
-		<include refid="search"></include>
-
+<!-- 		<include refid="search"></include>
+ -->
 	</select>
 
 	<insert id="boardRegist">
@@ -17,8 +16,7 @@
 	</insert>
 
 	<select id="boardView" resultType="com.spring.web.domain.BoardVO">
-		select * from board where bno
-		= #{bno}
+		select * from board where bno = #{bno}
 	</select>
 
 	<delete id="boardDelete">
@@ -27,14 +25,14 @@
 
 	<sql id="search">
 		<if test="searchCondition != null">
-			<if test="searchCondition == 't'.toString()">
-				title like CONCAT('%', #{searchText}, '%')
+		
+			<if test="searchCondition == 't'">
+				where title like CONCAT('%'||#{searchText}||'%')
 			</if>
-			<if test="searchCondition == 'u'.toString()">
-				 userid like CONCAT('%', #{searchText}, '%')
+			<if test="searchCondition == 'u'">
+				where userid like CONCAT('%'||#{searchText}||'%')
 			</if>
 		</if>
 	</sql>
-
 
 </mapper>

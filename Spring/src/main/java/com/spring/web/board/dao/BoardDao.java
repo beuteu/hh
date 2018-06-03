@@ -16,6 +16,9 @@ public interface BoardDao {
 
 	void boardDelete(int bno)  throws Exception;
 
+	List<Map> boardList2(BoardVO vo)  throws Exception;
+
+
 	
 
 }
