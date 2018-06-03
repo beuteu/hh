@@ -4,7 +4,7 @@
 #container{_display:inline-block;width:100%}
 #container:after{display:block;clear:both;content:''}
 .snb{float:left;width:240px;margin-right:-260px; height: 300px; display: none}
-#content{ box-sizing: border-box; padding: 20px;}
+#content{ padding: 20px 20px 10px 20px;}
 #footer{width:100%}
 
 /* Layout Color - �떎�젣 �꽌鍮꾩뒪 �쟻�슜 �썑 �궘�젣 */
@@ -12,7 +12,7 @@
 #header{margin-top:10px; margin-bottom: 5px;}
 #header,#container{width:auto;padding:10px;border:1px solid #bfbfbf;background:#e5e5e5}
 .snb,#content{margin-top:10px;border:1px solid #bdbdbd;background:#fff;text-align:center}
-#content{height:auto; height: 600px}
+#content{height:auto; }
 #footer{width:auto;padding:10px;border:1px solid #bfbfbf;background:#e5e5e5; margin-top: 5px; text-align: center; font-size: 10px}
 
 .lee-checkbox { margin-right:20px !important}

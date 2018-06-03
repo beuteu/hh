@@ -5,16 +5,36 @@
 <mapper namespace="com.spring.web.mapper.Mapper">
 
 	<select id="boardList" resultType="com.spring.web.domain.BoardVO">
-		select * from board order by rgsde desc
+		select * from board order by bno desc limit 0,10
+		where
+		<include refid="search"></include>
+
 	</select>
-	
+
 	<insert id="boardRegist">
-		insert into board(title, content, userid  )
+		insert into board(title, content, userid )
 		values(#{title},#{content}, "beuteu")
 	</insert>
-	
+
 	<select id="boardView" resultType="com.spring.web.domain.BoardVO">
-		select * from board where bno = #{bno}
+		select * from board where bno
+		= #{bno}
 	</select>
-	
+
+	<delete id="boardDelete">
+		delete from board where bno = #{bno}
+	</delete>
+
+	<sql id="search">
+		<if test="searchCondition != null">
+			<if test="searchCondition == 't'.toString()">
+				title like CONCAT('%', #{searchText}, '%')
+			</if>
+			<if test="searchCondition == 'u'.toString()">
+				 userid like CONCAT('%', #{searchText}, '%')
+			</if>
+		</if>
+	</sql>
+
+
 </mapper>

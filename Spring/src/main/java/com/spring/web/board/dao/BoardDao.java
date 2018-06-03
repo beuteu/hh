@@ -4,14 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.web.domain.BoardVO;
+import com.spring.web.domain.Search;
 
 public interface BoardDao {
 
-	List<Map> boardList(BoardVO vo) throws Exception;
+	List<Map> boardList(Search search) throws Exception;
 
 	void boardRegist(BoardVO vo) throws Exception;
 
 	BoardVO boardView(BoardVO vo) throws Exception;
+
+	void boardDelete(int bno)  throws Exception;
+
 	
 
 }

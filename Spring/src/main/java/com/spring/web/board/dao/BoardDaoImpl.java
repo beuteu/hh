@@ -27,6 +27,7 @@ import org.springframework.util.StringUtils;
 
 import com.spring.web.board.serivce.BoardService;
 import com.spring.web.domain.BoardVO;
+import com.spring.web.domain.Search;
 
 
 @Service("boardDao")
@@ -38,8 +39,8 @@ public class BoardDaoImpl implements BoardDao {
 	private static final String NAME_SPACE = "com.spring.web.mapper.Mapper.";
 
 	@Override
-	public List<Map> boardList(BoardVO vo) throws Exception {
-		return sqlSession.selectList(NAME_SPACE + "boardList",vo);
+	public List<Map> boardList(Search search) throws Exception {
+		return sqlSession.selectList(NAME_SPACE + "boardList",search);
 	}
 
 	@Override
@@ -53,17 +54,10 @@ public class BoardDaoImpl implements BoardDao {
 
 	}
 
-
-
-	
-
-
-
-	
-
-/*	public void boardCreate(BoardVO vo) throws Exception {
-		boardDao.boardList(vo);
+	@Override
+	public void boardDelete(int bno) throws Exception {
+		sqlSession.delete(NAME_SPACE + "boardDelete",bno);
 	}
-*/
+		
 
 }
